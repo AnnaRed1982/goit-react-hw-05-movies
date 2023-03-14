@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 
-const Home = () => {
+const MovieDetails = () => {
   useEffect(() => {
     //http request
   }, []);
 
-  return <h1>Tranding today</h1>;
+  return;
 };
 
-export default Home;
+export default MovieDetails;
