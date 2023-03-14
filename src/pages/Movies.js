@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export const Movies = () => {
+const Movies = () => {
   useEffect(() => {
     //http request
   }, []);
