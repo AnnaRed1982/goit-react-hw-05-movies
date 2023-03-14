@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export const Home = () => {
+const Home = () => {
   useEffect(() => {
     //http request
   }, []);
