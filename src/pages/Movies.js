@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 
-const Home = () => {
+const Movies = () => {
   useEffect(() => {
     //http request
   }, []);
 };
 
-export default Home;
+export default Movies;
