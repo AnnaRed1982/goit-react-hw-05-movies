@@ -10,3 +10,12 @@ export const fetchPopularMovie = async () => {
 
   return response.data.results;
 };
+
+export const fetchMovieId = async movieId => {
+  const response = await axios.get(
+    `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=en-US`
+  );
+  return response.data;
+};
+
+//

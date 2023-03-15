@@ -13,7 +13,7 @@ const Home = () => {
     const fetchMovie = async () => {
       try {
         const response = await fetchPopularMovie();
-        console.log(response);
+        // console.log(response);
 
         setMovies(response);
         setStatus('resolved');
@@ -33,7 +33,7 @@ const Home = () => {
   }
 
   if (status === 'resolved') {
-    console.log(movies);
+    // console.log(movies);
     return (
       <>
         <h1>Tranding today</h1>
