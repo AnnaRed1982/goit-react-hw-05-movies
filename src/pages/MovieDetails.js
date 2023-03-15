@@ -38,9 +38,18 @@ const MovieDetails = () => {
     return (
       <>
         <button type="button">Go back</button>
-        <img src={`${POSTER_PATH}${movie.poster_path}`} alt="movie poster" />
+        <img
+          src={`${POSTER_PATH}${movie.poster_path}`}
+          alt="movie poster"
+          height="400"
+        />
         <h2>{movie.title}</h2>
-        <p>{movie.release_date.slice(0, 4)}</p>
+        <p>({movie.release_date.slice(0, 4)})</p>
+        <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
+        <p>Overview</p>
+        <p> {movie.overview}</p>
+        <p>Genres</p>
+        {/* <p> {movie.genres}</p> */}
       </>
     );
   }
