@@ -8,6 +8,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
 
   const [movie, setMovie] = useState([]);
+
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('start');
 
@@ -20,6 +21,7 @@ const MovieDetails = () => {
         console.log(response);
 
         setMovie(response);
+
         setStatus('resolved');
       } catch (error) {
         setStatus('rejected');
@@ -49,7 +51,12 @@ const MovieDetails = () => {
         <p>Overview</p>
         <p> {movie.overview}</p>
         <p>Genres</p>
-        {/* <p> {movie.genres}</p> */}
+        <ul>
+          {movie.genres.map(genre => {
+            return <li key={genre.name}>{genre.name}</li>;
+          })}
+        </ul>
+        <h3>Addditional information</h3>
       </>
     );
   }
