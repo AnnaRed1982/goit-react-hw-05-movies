@@ -14,7 +14,7 @@ const Reviews = () => {
     const fetchMovie = async () => {
       try {
         const response = await fetchMovieReviews(movieId);
-        console.log(response);
+        // console.log(response);
 
         setReviews(response);
         setStatus('resolved');
