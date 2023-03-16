@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { fetchPopularMovie } from '../services/api';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('start');
+
+  const location = useLocation();
 
   useEffect(() => {
     //http request
@@ -41,7 +43,9 @@ const Home = () => {
           {movies.map(movie => {
             return (
               <li key={movie.id}>
-                <Link to={`movies/${movie.id}`}>{movie.title}</Link>
+                <Link to={`movies/${movie.id}`} state={{ from: location }}>
+                  {movie.title}
+                </Link>
               </li>
             );
           })}

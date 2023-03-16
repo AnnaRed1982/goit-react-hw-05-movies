@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { fetchMovieSearch } from 'services/api';
 import { Link } from 'react-router-dom';
 
 const Movies = () => {
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('start');
-  const [movieSearch, setMovieSearch] = useState('');
+  const [movieSearch, setMovieSearch] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const movieName = searchParams.get('query');
+  const movieName = searchParams.get('query') ?? '';
+
+  const location = useLocation();
 
   useEffect(() => {
     //http request
@@ -53,10 +55,7 @@ const Movies = () => {
           {movieSearch.map(movie => {
             return (
               <li key={movie.id}>
-                <Link
-                  to={`${movie.id}`}
-                  state={{ from: `/movies?query=${movieName}` }}
-                >
+                <Link to={`${movie.id}`} state={{ from: location }}>
                   {movie.title}
                 </Link>
               </li>

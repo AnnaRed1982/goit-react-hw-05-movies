@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
-import { NavLink, Outlet, useParams, useLocation } from 'react-router-dom';
+import {
+  NavLink,
+  Link,
+  Outlet,
+  useParams,
+  useLocation,
+} from 'react-router-dom';
 import { fetchMovieDetails } from '../services/api';
 import { HiArrowLeft } from 'react-icons/hi';
 import poster from '../images/poster.png';
@@ -72,7 +78,7 @@ const MovieDetails = () => {
         <h3>Addditional information</h3>
         <ul>
           <li>
-            <NavLink to="cast">Cast</NavLink>
+            <Link to="cast">Cast</Link>
           </li>
           <li>
             <NavLink to="reviews">Reviews</NavLink>
