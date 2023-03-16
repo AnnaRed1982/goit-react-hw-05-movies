@@ -6,9 +6,10 @@ import {
   useParams,
   useLocation,
 } from 'react-router-dom';
-import { fetchMovieDetails } from '../services/api';
+import { fetchMovieDetails } from '../../services/api';
 import { HiArrowLeft } from 'react-icons/hi';
-import poster from '../images/poster.png';
+import poster from '../../images/poster.png';
+import css from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const POSTER_PATH = 'https://image.tmdb.org/t/p/w500';
@@ -49,32 +50,34 @@ const MovieDetails = () => {
   if (status === 'resolved') {
     return (
       <>
-        <button type="button">
-          <NavLink to={backLinkHref}>
-            <HiArrowLeft size="20" /> Go back
-          </NavLink>
-        </button>
-        {movie.poster_path ? (
-          <img
-            src={`${POSTER_PATH}${movie.poster_path}`}
-            alt="movie poster"
-            height="400"
-          />
-        ) : (
-          <img src={poster} alt="movie poster" height="400" />
-        )}
-
-        <h2>{movie.title}</h2>
-        <p>({movie.release_date.slice(0, 4)})</p>
-        <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
-        <p>Overview</p>
-        <p> {movie.overview}</p>
-        <p>Genres</p>
-        <ul>
-          {movie.genres.map(genre => {
-            return <li key={genre.id}>{genre.name}</li>;
-          })}
-        </ul>
+        <Link to={backLinkHref} className={css.buttonLink}>
+          <button type="button" className={css.buttonBack}>
+            <HiArrowLeft size="20" />
+            Go back
+          </button>
+        </Link>
+        <div>
+          {movie.poster_path ? (
+            <img
+              src={`${POSTER_PATH}${movie.poster_path}`}
+              alt="movie poster"
+              height="400"
+            />
+          ) : (
+            <img src={poster} alt="movie poster" height="400" />
+          )}
+          <h2>{movie.title}</h2>
+          <p>({movie.release_date.slice(0, 4)})</p>
+          <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
+          <p>Overview</p>
+          <p> {movie.overview}</p>
+          <p>Genres</p>
+          <ul>
+            {movie.genres.map(genre => {
+              return <li key={genre.id}>{genre.name}</li>;
+            })}
+          </ul>
+        </div>
         <h3>Addditional information</h3>
         <ul>
           <li>

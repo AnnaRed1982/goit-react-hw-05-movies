@@ -13,7 +13,6 @@ const Movies = () => {
   const location = useLocation();
 
   useEffect(() => {
-    //http request
     setStatus('pending');
     const fetchMovie = async () => {
       try {

@@ -10,12 +10,10 @@ const Home = () => {
   const location = useLocation();
 
   useEffect(() => {
-    //http request
     setStatus('pending');
     const fetchMovie = async () => {
       try {
         const response = await fetchPopularMovie();
-        // console.log(response);
 
         setMovies(response);
         setStatus('resolved');
@@ -35,7 +33,6 @@ const Home = () => {
   }
 
   if (status === 'resolved') {
-    // console.log(movies);
     return (
       <>
         <h1>Tranding today</h1>

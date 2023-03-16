@@ -1,4 +1,4 @@
-.searchbar {
+.navbar {
   top: 0;
   left: 0;
   position: sticky;
@@ -24,6 +24,9 @@
   font-weight: 600;
   color: black;
 }
+.searchbarLink:active {
+  color: rgb(216, 39, 68);
+}
 main {
-  padding-top: 20px;
+  padding: 20px ;
 }
