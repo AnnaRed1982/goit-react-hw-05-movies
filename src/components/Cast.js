@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchMovieCast } from 'services/api';
 import { useParams } from 'react-router-dom';
-import poster from '../images/poster.png'
+import poster from '../images/poster.png';
 
 const Cast = () => {
   const POSTER_PATH = 'https://image.tmdb.org/t/p/w500';
@@ -38,6 +38,10 @@ const Cast = () => {
     return <h2>Whoops, something went wrong: {error}</h2>;
   }
   if (status === 'resolved') {
+    if (cast.length === 0) {
+      return <p>We don't have any cast for this movie</p>;
+    }
+
     return (
       <>
         <ul>
@@ -53,7 +57,6 @@ const Cast = () => {
                 ) : (
                   <img src={poster} alt="movie poster" height="100" />
                 )}
-
                 <p>{cast.name}</p>
               </li>
             );

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { NavLink, Outlet, useParams, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from '../services/api';
 import { HiArrowLeft } from 'react-icons/hi';
+import poster from '../images/poster.png';
 
 const MovieDetails = () => {
   const POSTER_PATH = 'https://image.tmdb.org/t/p/w500';
@@ -47,11 +48,16 @@ const MovieDetails = () => {
             <HiArrowLeft size="20" /> Go back
           </NavLink>
         </button>
-        <img
-          src={`${POSTER_PATH}${movie.poster_path}`}
-          alt="movie poster"
-          height="400"
-        />
+        {movie.poster_path ? (
+          <img
+            src={`${POSTER_PATH}${movie.poster_path}`}
+            alt="movie poster"
+            height="400"
+          />
+        ) : (
+          <img src={poster} alt="movie poster" height="400" />
+        )}
+
         <h2>{movie.title}</h2>
         <p>({movie.release_date.slice(0, 4)})</p>
         <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
