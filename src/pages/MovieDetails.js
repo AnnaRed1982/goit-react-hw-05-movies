@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, Outlet, useParams } from 'react-router-dom';
 import { fetchMovieId } from '../services/api';
 
 const MovieDetails = () => {
@@ -8,7 +8,6 @@ const MovieDetails = () => {
   const { movieId } = useParams();
 
   const [movie, setMovie] = useState([]);
-
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('start');
 
@@ -18,10 +17,9 @@ const MovieDetails = () => {
     const fetchMovie = async () => {
       try {
         const response = await fetchMovieId(movieId);
-        console.log(response);
+        // console.log(response);
 
         setMovie(response);
-
         setStatus('resolved');
       } catch (error) {
         setStatus('rejected');
@@ -30,12 +28,15 @@ const MovieDetails = () => {
     };
     fetchMovie();
   }, [movieId]);
+
   if (status === 'pending') {
     return <h2>Loading...</h2>;
   }
+
   if (status === 'rejected') {
     return <h2>Whoops, something went wrong: {error}</h2>;
   }
+
   if (status === 'resolved') {
     return (
       <>
@@ -53,10 +54,19 @@ const MovieDetails = () => {
         <p>Genres</p>
         <ul>
           {movie.genres.map(genre => {
-            return <li key={genre.name}>{genre.name}</li>;
+            return <li key={genre.id}>{genre.name}</li>;
           })}
         </ul>
         <h3>Addditional information</h3>
+        <ul>
+          <li>
+            <NavLink to="cast">Cast</NavLink>
+          </li>
+          <li>
+            <NavLink to="reviews">Reviews</NavLink>
+          </li>
+        </ul>
+        <Outlet />
       </>
     );
   }
