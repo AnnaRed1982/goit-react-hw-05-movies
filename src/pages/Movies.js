@@ -4,19 +4,18 @@ import { fetchMovieSearch } from 'services/api';
 import { Link } from 'react-router-dom';
 
 const Movies = () => {
-  const [query, setQuery] = useState('');
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('start');
   const [movieSearch, setMovieSearch] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
-  const movieName = searchParams.get('movieName');
+  const movieName = searchParams.get('query');
 
   useEffect(() => {
     //http request
     setStatus('pending');
     const fetchMovie = async () => {
       try {
-        const response = await fetchMovieSearch(query);
+        const response = await fetchMovieSearch(movieName);
         console.log(response);
 
         setMovieSearch(response);
@@ -27,12 +26,11 @@ const Movies = () => {
       }
     };
     fetchMovie();
-  }, [query]);
+  }, [movieName]);
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
-    setQuery(form.elements.query.value);
     setSearchParams({ query: form.elements.query.value });
     form.reset();
   };
@@ -55,7 +53,12 @@ const Movies = () => {
           {movieSearch.map(movie => {
             return (
               <li key={movie.id}>
-                <Link to={`${movie.id}`}>{movie.title}</Link>
+                <Link
+                  to={`${movie.id}`}
+                  state={{ from: `/movies?query=${movieName}` }}
+                >
+                  {movie.title}
+                </Link>
               </li>
             );
           })}
