@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useParams, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from '../services/api';
+import { HiArrowLeft } from 'react-icons/hi';
 
 const MovieDetails = () => {
   const POSTER_PATH = 'https://image.tmdb.org/t/p/w500';
 
-  const { movieId } = useParams();
-
   const [movie, setMovie] = useState([]);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('start');
+  const { movieId } = useParams();
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     //http request
@@ -40,7 +42,11 @@ const MovieDetails = () => {
   if (status === 'resolved') {
     return (
       <>
-        <button type="button">Go back</button>
+        <button type="button">
+          <NavLink to={backLinkHref}>
+            <HiArrowLeft size="20" /> Go back
+          </NavLink>
+        </button>
         <img
           src={`${POSTER_PATH}${movie.poster_path}`}
           alt="movie poster"
