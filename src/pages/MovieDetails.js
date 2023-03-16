@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Outlet, useParams } from 'react-router-dom';
-import { fetchMovieId } from '../services/api';
+import { fetchMovieDetails } from '../services/api';
 
 const MovieDetails = () => {
   const POSTER_PATH = 'https://image.tmdb.org/t/p/w500';
@@ -16,7 +16,7 @@ const MovieDetails = () => {
     setStatus('pending');
     const fetchMovie = async () => {
       try {
-        const response = await fetchMovieId(movieId);
+        const response = await fetchMovieDetails(movieId);
         // console.log(response);
 
         setMovie(response);
