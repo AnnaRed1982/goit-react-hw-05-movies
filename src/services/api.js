@@ -31,3 +31,10 @@ export const fetchMovieReviews = async movieId => {
   );
   return response.data.results;
 };
+
+export const fetchMovieSearch = async query => {
+  const response = await axios.get(
+    `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=1&query=${query}`
+  );
+  return response.data.results;
+};
