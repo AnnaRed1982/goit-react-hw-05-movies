@@ -21,7 +21,7 @@ const MovieDetails = () => {
 
   const location = useLocation();
 
-  const backLinkHref = useRef(location.state?.from ?? '/'); ;
+  const backLinkHref = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     setStatus('pending');
@@ -77,16 +77,17 @@ const MovieDetails = () => {
 
             <h3>Overview</h3>
             <p> {movie.overview}</p>
-
-            <h3>Genres</h3>
-            <ul>
-              {movie.genres.map(genre => {
-                return <li key={genre.id}>{genre.name}</li>;
-              })}
-            </ul>
+            <div>
+              <h4>Genres</h4>
+              <ul className={css.cardGenres}>
+                {movie.genres.map(genre => {
+                  return <li key={genre.id}>{genre.name}</li>;
+                })}
+              </ul>
+            </div>
           </div>
         </div>
-        <h3>Addditional information</h3>
+        <h4>Additional information</h4>
         <ul>
           <li>
             <Link to="cast">Cast</Link>
