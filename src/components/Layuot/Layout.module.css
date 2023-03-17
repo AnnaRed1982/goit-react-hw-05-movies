@@ -20,13 +20,14 @@
 
 .searchbarLink {
   text-decoration: none;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 600;
   color: black;
 }
 .searchbarLink:active {
   color: rgb(216, 39, 68);
 }
+
 main {
-  padding: 20px ;
+  padding: 20px;
 }

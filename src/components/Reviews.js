@@ -9,12 +9,10 @@ const Reviews = () => {
 
   const { movieId } = useParams();
   useEffect(() => {
-    //http request
     setStatus('pending');
     const fetchMovie = async () => {
       try {
         const response = await fetchMovieReviews(movieId);
-        // console.log(response);
 
         setReviews(response);
         setStatus('resolved');

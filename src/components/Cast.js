@@ -13,7 +13,6 @@ const Cast = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
-    //http request
     setStatus('pending');
     const fetchMovie = async () => {
       try {

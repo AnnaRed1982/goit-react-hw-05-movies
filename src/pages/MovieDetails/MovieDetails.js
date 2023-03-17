@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   NavLink,
   Link,
@@ -18,16 +18,16 @@ const MovieDetails = () => {
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('start');
   const { movieId } = useParams();
+
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+
+  const backLinkHref = useRef(location.state?.from ?? '/'); ;
 
   useEffect(() => {
-    //http request
     setStatus('pending');
     const fetchMovie = async () => {
       try {
         const response = await fetchMovieDetails(movieId);
-        // console.log(response);
 
         setMovie(response);
         setStatus('resolved');
@@ -50,33 +50,41 @@ const MovieDetails = () => {
   if (status === 'resolved') {
     return (
       <>
-        <Link to={backLinkHref} className={css.buttonLink}>
+        <Link to={backLinkHref.current} className={css.buttonLink}>
           <button type="button" className={css.buttonBack}>
             <HiArrowLeft size="20" />
             Go back
           </button>
         </Link>
-        <div>
+
+        <div className={css.card}>
           {movie.poster_path ? (
             <img
               src={`${POSTER_PATH}${movie.poster_path}`}
               alt="movie poster"
-              height="400"
+              className={css.cardPoster}
             />
           ) : (
-            <img src={poster} alt="movie poster" height="400" />
+            <img src={poster} alt="movie poster" className={css.cardPoster} />
           )}
-          <h2>{movie.title}</h2>
-          <p>({movie.release_date.slice(0, 4)})</p>
-          <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
-          <p>Overview</p>
-          <p> {movie.overview}</p>
-          <p>Genres</p>
-          <ul>
-            {movie.genres.map(genre => {
-              return <li key={genre.id}>{genre.name}</li>;
-            })}
-          </ul>
+
+          <div className={css.cardDescription}>
+            <h2>
+              {movie.title} ({movie.release_date.slice(0, 4)})
+            </h2>
+
+            <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
+
+            <h3>Overview</h3>
+            <p> {movie.overview}</p>
+
+            <h3>Genres</h3>
+            <ul>
+              {movie.genres.map(genre => {
+                return <li key={genre.id}>{genre.name}</li>;
+              })}
+            </ul>
+          </div>
         </div>
         <h3>Addditional information</h3>
         <ul>
