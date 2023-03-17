@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { fetchMovieCast } from 'services/api';
 import { useParams } from 'react-router-dom';
-import poster from '../images/poster.png';
+import poster from '../../images/poster.png';
+import css from './Cast.module.css'
 
 const Cast = () => {
   const POSTER_PATH = 'https://image.tmdb.org/t/p/w500';
@@ -43,20 +44,27 @@ const Cast = () => {
 
     return (
       <>
-        <ul>
+        <ul className={css.castCard}>
           {cast.map(cast => {
             return (
-              <li key={cast.cast_id}>
+              <li key={cast.cast_id} className={css.castCard}>
                 {cast.profile_path ? (
                   <img
+                    className={css.castPoster}
                     src={`${POSTER_PATH}${cast.profile_path}`}
                     alt="movie poster"
                     height="100"
                   />
                 ) : (
-                  <img src={poster} alt="movie poster" height="100" />
+                  <img
+                    className={css.castPoster}
+                    src={poster}
+                    alt="movie poster"
+                    height="100"
+                  />
                 )}
-                <p>{cast.name}</p>
+                <h5>{cast.name}</h5>
+                <p>Character: {cast.character}</p>
               </li>
             );
           })}

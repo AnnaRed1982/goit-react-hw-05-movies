@@ -1,0 +1,9 @@
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reviewAuthor{
+    margin-bottom: 10px;
+}

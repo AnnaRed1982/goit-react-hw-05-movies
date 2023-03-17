@@ -17,7 +17,6 @@ const Movies = () => {
     const fetchMovie = async () => {
       try {
         const response = await fetchMovieSearch(movieName);
-        console.log(response);
 
         setMovieSearch(response);
         setStatus('resolved');
