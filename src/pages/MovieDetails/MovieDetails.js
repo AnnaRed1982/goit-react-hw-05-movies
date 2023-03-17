@@ -1,6 +1,4 @@
-import { Suspense } from 'react';
-
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import {
   NavLink,
   Link,
