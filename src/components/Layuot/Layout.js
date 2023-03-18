@@ -8,10 +8,20 @@ export const Layout = () => {
     <div>
       <header>
         <nav className={css.navbar}>
-          <NavLink to="/" className={css.searchbarLink}>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? css.active : css.searchbarLink
+            }
+          >
             Home
           </NavLink>
-          <NavLink to="/movies" className={css.searchbarLink}>
+          <NavLink
+            to="/movies"
+            className={({ isActive }) =>
+              isActive ? css.active : css.searchbarLink
+            }
+          >
             Movies
           </NavLink>
         </nav>
