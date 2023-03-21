@@ -1,10 +1,5 @@
 import { useState, useEffect, useRef, Suspense } from 'react';
-import {
-  Link,
-  Outlet,
-  useParams,
-  useLocation,
-} from 'react-router-dom';
+import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from '../../services/api';
 import { HiArrowLeft } from 'react-icons/hi';
 import poster from '../../images/poster.png';
@@ -86,6 +81,7 @@ const MovieDetails = () => {
             </div>
           </div>
         </div>
+        <hr />
         <h4>Additional information</h4>
         <ul>
           <li>
@@ -95,6 +91,7 @@ const MovieDetails = () => {
             <Link to="reviews">Reviews</Link>
           </li>
         </ul>
+        <hr />
         <Suspense fallback={<div>Loading...</div>}>
           <Outlet />
         </Suspense>
