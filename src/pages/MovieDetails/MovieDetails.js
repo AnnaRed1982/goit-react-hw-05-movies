@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, Suspense } from 'react';
 import {
-  NavLink,
   Link,
   Outlet,
   useParams,
@@ -93,7 +92,7 @@ const MovieDetails = () => {
             <Link to="cast">Cast</Link>
           </li>
           <li>
-            <NavLink to="reviews">Reviews</NavLink>
+            <Link to="reviews">Reviews</Link>
           </li>
         </ul>
         <Suspense fallback={<div>Loading...</div>}>
