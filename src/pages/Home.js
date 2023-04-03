@@ -35,7 +35,7 @@ const Home = () => {
   if (status === 'resolved') {
     return (
       <>
-        <h1>Tranding today</h1>
+        <h1>Trending today</h1>
         <ul>
           {movies.map(movie => {
             return (
